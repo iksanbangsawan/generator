@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Idea — Bisnity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=Inter:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c8a84b;
+      --gold-light: #e8c86b;
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #161616;
+      --border: #242424;
+      --border-hover: #333;
+      --text: #f0ede6;
+      --text-muted: #666;
+      --text-dim: #3e3e3e;
+      --green: #5ca870;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main { position: relative; z-index: 1; flex: 1; }
+
+    /* NAV */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .navbar-logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+      
+    }
+
+    .navbar-badge {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 0.5px solid rgba(200,168,75,0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 3.5rem 1.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -80px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 350px;
+      background: radial-gradient(ellipse at center, rgba(200,168,75,0.09) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 0.5px solid rgba(200,168,75,0.3);
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 1.4rem;
+    }
+
+    .badge::before {
+      content: '';
+      display: inline-block;
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.75rem, 4.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 420px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+
+    /* FORM CARD */
+    .form-wrap {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .form-card {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 18px;
+      padding: 2.2rem 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .field-hint {
+      font-size: 11px;
+      color: #3a3a3a;
+      font-weight: 300;
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: -4px;
+    }
+
+    select, input[type="number"], input[type="text"], textarea {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: 9px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 13px center;
+      padding-right: 38px;
+      cursor: pointer;
+    }
+
+    select:focus, input:focus, textarea:focus {
+      border-color: rgba(200,168,75,0.45);
+      box-shadow: 0 0 0 3px rgba(200,168,75,0.06);
+    }
+
+    select option { background: #111; }
+
+    .others-input { display: none; }
+    .others-input.show { display: block; }
+
+    textarea {
+      resize: none;
+      height: 82px;
+      line-height: 1.6;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button { opacity: 0.3; }
+
+    .duration-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* BUTTON */
+    .generate-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--gold);
+      color: #0a0a0a;
+      border: none;
+      border-radius: 11px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      margin-top: 20px;
+      transition: opacity 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .generate-btn:hover { opacity: 0.88; }
+    .generate-btn:active { transform: scale(0.988); }
+    .generate-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(10,10,10,0.3);
+      border-top-color: #0a0a0a;
+      border-radius: 50%;
+      animation: spin 0.65s linear infinite;
+      display: none;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* PROGRESS */
+    .progress-bar {
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: 14px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+
+    .streaming-text {
+      font-size: 12px;
+      color: #3a3a3a;
+      text-align: center;
+      margin-top: 9px;
+      display: none;
+      font-style: italic;
+    }
+
+    .error-msg {
+      background: rgba(180,60,60,0.1);
+      border: 0.5px solid rgba(180,60,60,0.3);
+      border-radius: 9px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #e07070;
+      margin-top: 14px;
+      display: none;
+      line-height: 1.5;
+    }
+
+    /* RESULTS */
+    .results-section {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+      display: none;
+    }
+
+    .divider {
+      height: 0.5px;
+      background: var(--border);
+      margin: 2rem 0 1.6rem;
+    }
+
+    .results-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .results-header h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .results-meta {
+      font-size: 12px;
+      color: var(--text-dim);
+      padding-top: 2px;
+    }
+
+    .content-grid { display: grid; gap: 10px; }
+
+    .content-card {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 13px;
+      padding: 1.15rem 1.3rem;
+      transition: border-color 0.2s;
+    }
+
+    .content-card:hover { border-color: rgba(200,168,75,0.22); }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 24px;
+      padding-top: 2px;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-konsep {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin: 6px 0 10px 36px;
+      font-weight: 300;
+    }
+
+    .card-meta {
+      display: flex;
+      gap: 7px;
+      margin-left: 36px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .tag-type { background: var(--surface2); color: #888; border: 0.5px solid var(--border); }
+    .tag-date { background: rgba(200,168,75,0.08); color: var(--gold); border: 0.5px solid rgba(200,168,75,0.2); }
+    .tag-cta  { background: rgba(92,168,112,0.08); color: var(--green); border: 0.5px solid rgba(92,168,112,0.2); }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 1.4rem 1rem 2rem;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      color: #4a4a4a;
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-links .sep {
+      font-size: 11px;
+      color: #2e2e2e;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .footer-logo img {
+      height: 18px;
+      width: auto;
+      
+      opacity: 0.35;
+    }
+
+    @media (max-width: 520px) {
+      .navbar { padding: 1rem 1.2rem; }
+      .hero { padding: 2.5rem 1.2rem 1.8rem; }
+      .form-wrap { padding: 0 1rem; }
+      .form-card { padding: 1.5rem 1.1rem; border-radius: 14px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .results-section { padding: 0 1rem 3rem; }
+      .card-konsep { margin-left: 0; }
+      .card-meta { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <img src="data:image/png;base64,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" alt="Bisnity" />
+    </div>
+    <div class="navbar-badge">Content Idea</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="badge">✦ AI Powered</div>
+    <h1>Generate Ide Konten untuk<br><em>Bisnis atau Personal Brandingmu.</em></h1>
+    <p>Masukkan detail bisnismu, kami generate rencana konten yang relevan, terstruktur, dan siap eksekusi.</p>
+  </section>
+
+  <!-- FORM -->
+  <div class="form-wrap">
+    <div class="form-card">
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Industri / Niche</label>
+          <select id="industri" onchange="toggleOthers('industri')">
+            <option value="">Pilih industri...</option>
+            <option value="kuliner">🍜 Kuliner &amp; F&amp;B</option>
+            <option value="fashion">👗 Fashion &amp; Lifestyle</option>
+            <option value="kecantikan">💄 Kecantikan &amp; Skincare</option>
+            <option value="kesehatan">💪 Kesehatan &amp; Fitness</option>
+            <option value="properti">🏠 Properti &amp; Real Estate</option>
+            <option value="teknologi">💻 Teknologi &amp; SaaS</option>
+            <option value="pendidikan">📚 Pendidikan &amp; E-Learning</option>
+            <option value="keuangan">💰 Keuangan &amp; Investasi</option>
+            <option value="travel">✈️ Travel &amp; Wisata</option>
+            <option value="otomotif">🚗 Otomotif</option>
+            <option value="retail">🛒 Retail &amp; E-commerce</option>
+            <option value="agrobisnis">🌾 Agrobisnis &amp; Pertanian</option>
+            <option value="hiburan">🎬 Hiburan &amp; Creative</option>
+            <option value="legal">⚖️ Hukum &amp; Konsultasi</option>
+            <option value="others_industri">✏️ Lainnya (tulis sendiri)</option>
+          </select>
+          <input type="text" id="industri-others" class="others-input" placeholder="Tuliskan industri kamu..." />
+        </div>
+
+        <div class="form-group">
+          <label>Jumlah Konten</label>
+          <input type="number" id="jumlah" min="1" max="60" value="10" placeholder="misal: 10" />
+        </div>
+
+        <div class="form-group">
+          <label>Tujuan Konten</label>
+          <select id="tujuan" onchange="toggleOthers('tujuan')">
+            <option value="">Pilih tujuan...</option>
+            <option value="brand awareness">Bangun Brand Awareness</option>
+            <option value="edukasi audiens">Edukasi Audiens</option>
+            <option value="jualan / konversi">Dorong Penjualan</option>
+            <option value="engagement komunitas">Tingkatkan Engagement</option>
+            <option value="lead generation">Generate Leads</option>
+            <option value="membangun kepercayaan">Bangun Kepercayaan</option>
+            <option value="viral & reach">Viral &amp; Expand Reach</option>
+            <option value="others_tujuan">✏️ Lainnya (tulis sendiri)</option>
+          </select>
+          <input type="text" id="tujuan-others" class="others-input" placeholder="Tuliskan tujuan kontenmu..." />
+        </div>
+
+        <div class="form-group">
+          <label>Platform Utama</label>
+          <select id="platform">
+            <option value="">Pilih platform...</option>
+            <option value="Instagram">Instagram</option>
+            <option value="TikTok">TikTok</option>
+            <option value="YouTube">YouTube</option>
+            <option value="LinkedIn">LinkedIn</option>
+            <option value="Twitter/X">Twitter/X</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Blog / Website">Blog / Website</option>
+            <option value="Multi-platform">Multi-platform</option>
+          </select>
+        </div>
+
+        <div class="form-group full">
+          <label>Durasi Perencanaan</label>
+          <div class="duration-row">
+            <input type="number" id="durasi-angka" min="1" max="52" value="1" />
+            <select id="durasi-unit">
+              <option value="minggu">Minggu</option>
+              <option value="bulan" selected>Bulan</option>
+              <option value="kuartal">Kuartal (3 bulan)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>Deskripsi Bisnis</label>
+          <span class="field-hint">Opsional — ceritakan target audiens atau hal yang ingin ditonjolkan</span>
+          <textarea id="deskripsi" placeholder="Contoh: Toko skincare lokal, target perempuan 20-35 tahun, fokus bahan alami..."></textarea>
+        </div>
+
+      </div>
+
+      <button class="generate-btn" id="genBtn" onclick="generateKonten()">
+        <div class="spinner" id="spinner"></div>
+        <span id="btnText">✦ Generate Ide Konten</span>
+      </button>
+
+      <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="streaming-text" id="streamingText">AI sedang menyusun ide kontenmu...</div>
+      <div class="error-msg" id="errorMsg"></div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-section" id="resultsSection">
+    <div class="divider"></div>
+    <div class="results-header">
+      <h3 id="resultsTitle">Rencana Konten</h3>
+      <div class="results-meta" id="resultsMeta"></div>
+    </div>
+    <div class="content-grid" id="contentGrid"></div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="data:image/png;base64,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" alt="Bisnity" />
+  </div>
+  <div class="footer-links">
+    <span class="sep">powered by</span>
+    <a href="https://instagram.com/bisnity" target="_blank" rel="noopener">Bisnity</a>
+    <span class="sep">·</span>
+    <span class="sep">directed by</span>
+    <a href="https://iksanbangsawan.com" target="_blank" rel="noopener">Iksan Bangsawan</a>
+  </div>
+</footer>
+
+<script>
+  function toggleOthers(field) {
+    const select = document.getElementById(field);
+    const othersInput = document.getElementById(field + '-others');
+    if (select.value === 'others_' + field) {
+      othersInput.classList.add('show');
+      othersInput.focus();
+    } else {
+      othersInput.classList.remove('show');
+      othersInput.value = '';
+    }
+  }
+
+  function getVal(field) {
+    const select = document.getElementById(field);
+    if (select.value === 'others_' + field) {
+      return document.getElementById(field + '-others').value.trim();
+    }
+    return select.value;
+  }
+
+  async function generateKonten() {
+    const industri = getVal('industri');
+    const jumlah   = parseInt(document.getElementById('jumlah').value);
+    const tujuan   = getVal('tujuan');
+    const platform = document.getElementById('platform').value;
+    const durasiAngka = document.getElementById('durasi-angka').value;
+    const durasiUnit  = document.getElementById('durasi-unit').value;
+    const deskripsi   = document.getElementById('deskripsi').value;
+
+    const errEl = document.getElementById('errorMsg');
+    errEl.style.display = 'none';
+
+    if (!industri) { showErr('Mohon pilih atau isi industri/niche kamu.'); return; }
+    if (!tujuan)   { showErr('Mohon pilih atau isi tujuan konten kamu.'); return; }
+    if (!platform) { showErr('Mohon pilih platform utama.'); return; }
+    if (!jumlah || jumlah < 1 || jumlah > 60) { showErr('Jumlah konten harus antara 1 \u2013 60.'); return; }
+
+    const btn = document.getElementById('genBtn');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.getElementById('btnText');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const streamingText = document.getElementById('streamingText');
+
+    btn.disabled = true;
+    spinner.style.display = 'block';
+    btnText.textContent = 'Generating...';
+    progressBar.style.display = 'block';
+    streamingText.style.display = 'block';
+    progressFill.style.width = '15%';
+
+    const prompt = `Kamu adalah content strategist profesional Indonesia. Generate ${jumlah} ide konten untuk industri ${industri}.
+
+Detail:
+- Platform: ${platform}
+- Tujuan konten: ${tujuan}
+- Durasi perencanaan: ${durasiAngka} ${durasiUnit}
+${deskripsi ? '- Info tambahan: ' + deskripsi : ''}
+
+Respond HANYA dengan JSON valid ini (tidak ada teks lain, tidak ada markdown backticks):
+{
+  "konten": [
+    {
+      "judul": "judul konten yang menarik dan spesifik",
+      "tipe": "tipe konten (misal: Carousel, Reels, Story, Post, Video, Blog, Thread)",
+      "jadwal": "kapan diposting (misal: Minggu 1 - Senin, Bulan 1 - Pekan 2)",
+      "konsep": "penjelasan konsep singkat 1-2 kalimat tentang isi dan angle konten ini, apa yang akan disampaikan dan mengapa menarik untuk audiens",
+      "cta": "call to action singkat yang relevan"
+    }
+  ]
+}
+
+Buat ide yang:
+1. Spesifik dan relevan untuk industri ${industri}
+2. Mendukung tujuan: ${tujuan}
+3. Sesuai format dan gaya ${platform}
+4. Tersebar merata dalam ${durasiAngka} ${durasiUnit}
+5. Variatif dalam format konten dan topik
+6. Ditulis dalam bahasa Indonesia yang natural dan menarik
+7. Konsep menjelaskan angle unik dan kenapa audiens akan tertarik`;
+
+    let prog = 15;
+    const progInterval = setInterval(() => {
+      prog = Math.min(prog + Math.random() * 7, 82);
+      progressFill.style.width = prog + '%';
+    }, 400);
+
+    try {
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 6000
+        })
+      });
+
+      clearInterval(progInterval);
+      progressFill.style.width = '95%';
+
+      if (!res.ok) throw new Error('API error: ' + res.status);
+
+      const data = await res.json();
+      const text  = data.content.map(i => i.text || '').join('');
+      const clean = text.replace(/```json|```/g, '').trim();
+      const parsed = JSON.parse(clean);
+
+      progressFill.style.width = '100%';
+
+      setTimeout(() => {
+        renderResults(parsed.konten, industri, durasiAngka, durasiUnit, platform);
+        resetBtn();
+        progressBar.style.display  = 'none';
+        streamingText.style.display = 'none';
+        progressFill.style.width   = '0%';
+      }, 350);
+
+    } catch(err) {
+      clearInterval(progInterval);
+      progressBar.style.display  = 'none';
+      streamingText.style.display = 'none';
+      progressFill.style.width   = '0%';
+      resetBtn();
+      showErr('Terjadi kesalahan: ' + err.message + '. Silakan coba lagi.');
+    }
+  }
+
+  function resetBtn() {
+    document.getElementById('genBtn').disabled = false;
+    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('btnText').textContent = '\u2756 Generate Ulang';
+  }
+
+  function showErr(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function renderResults(konten, industri, durasiAngka, durasiUnit, platform) {
+    const section = document.getElementById('resultsSection');
+    const grid    = document.getElementById('contentGrid');
+    const title   = document.getElementById('resultsTitle');
+    const meta    = document.getElementById('resultsMeta');
+
+    const labels = {
+      kuliner: 'Kuliner & F&B', fashion: 'Fashion & Lifestyle', kecantikan: 'Kecantikan & Skincare',
+      kesehatan: 'Kesehatan & Fitness', properti: 'Properti', teknologi: 'Teknologi',
+      pendidikan: 'Pendidikan', keuangan: 'Keuangan', travel: 'Travel', otomotif: 'Otomotif',
+      retail: 'Retail', agrobisnis: 'Agrobisnis', hiburan: 'Hiburan', legal: 'Hukum'
+    };
+
+    title.textContent = (labels[industri] || industri) + ' \u2014 ' + konten.length + ' Ide Konten';
+    meta.textContent  = platform + ' \u00b7 ' + durasiAngka + ' ' + durasiUnit;
+
+    grid.innerHTML = '';
+
+    konten.forEach((item, i) => {
+      const card = document.createElement('div');
+      card.className = 'content-card';
+      card.style.cssText = 'opacity:0; transform:translateY(10px); transition: opacity 0.28s ease, transform 0.28s ease;';
+
+      card.innerHTML =
+        '<div class="card-top">' +
+          '<div class="card-num">' + String(i + 1).padStart(2, '0') + '</div>' +
+          '<div class="card-title">' + esc(item.judul) + '</div>' +
+        '</div>' +
+        (item.konsep ? '<div class="card-konsep">' + esc(item.konsep) + '</div>' : '') +
+        '<div class="card-meta">' +
+          '<span class="tag tag-type">' + esc(item.tipe || 'Post') + '</span>' +
+          '<span class="tag tag-date">\uD83D\uDCC5 ' + esc(item.jadwal || '') + '</span>' +
+          (item.cta ? '<span class="tag tag-cta">\u2192 ' + esc(item.cta) + '</span>' : '') +
+        '</div>';
+
+      grid.appendChild(card);
+      setTimeout(() => {
+        card.style.opacity   = '1';
+        card.style.transform = 'translateY(0)';
+      }, i * 40);
+    });
+
+    section.style.display = 'block';
+    setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+  }
+
+  function esc(str) {
+    return String(str || '')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+</script>
+</body>
+</html>
