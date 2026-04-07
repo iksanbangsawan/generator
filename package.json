@@ -1,5 +1,8 @@
 {
-  "name": "bisnity-content-idea",
+  "name": "content-idea-iksan-bangsawan",
   "version": "1.0.0",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "ioredis": "^5.3.2"
+  }
 }
